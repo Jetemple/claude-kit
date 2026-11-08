@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "default",
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(rm -r *)",
+      "Bash(git push *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(chmod -R *)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.netrc)",
+      "Read(~/.git-credentials)",
+      "Read(~/.claude.json)",
+      "Read(~/.zsh_history)",
+      "Read(~/.bash_history)"
+    ],
+    "ask": [
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(python -m pip *)",
+      "Bash(python3 -m pip *)",
+      "Bash(uv add *)",
+      "Bash(uv pip *)",
+      "Bash(npm *)",
+      "Bash(rm *)",
+      "Bash(mv *)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git restore *)",
+      "Bash(git stash *)",
+      "Bash(git rebase *)",
+      "Bash(git merge *)"
+    ],
+    "allow": [
+      "Bash(pytest)",
+      "Bash(pytest *)",
+      "Bash(python -m pytest)",
+      "Bash(python -m pytest *)",
+      "Bash(python3 -m pytest)",
+      "Bash(python3 -m pytest *)",
+      "Bash(uv run pytest)",
+      "Bash(uv run pytest *)",
+      "Bash(ruff check)",
+      "Bash(ruff check *)",
+      "Bash(ruff format)",
+      "Bash(ruff format *)",
+      "Bash(mypy)",
+      "Bash(mypy *)",
+      "Bash(git add *)"
+    ]
+  }
+}
