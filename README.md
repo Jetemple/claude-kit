@@ -36,7 +36,7 @@ What the installer changes:
 |---|---|
 | `kit/CLAUDE.md` | Working rules, with two modes (below) and a short definition of "production ready" |
 | `kit/settings.json` | Permissions: `sudo`, `rm -r`, `git push`, `git reset --hard` and reads of `.env` and common credential files are denied; installs, `rm`, `mv` and git history changes ask first; pytest, ruff, mypy and `git add` run without a prompt |
-| `/spec` | Restate the task (from `problem.md` if present), list questions and edge cases, challenge my approach, propose steps tagged `[me]` or `[agent]`. No code; writes `plan.md` once I approve |
+| `/spec` | Restate the task (from `problem.md` if present), challenge my approach or propose one, list edge cases, then quick questions with recommended answers. No code; once I approve it writes `plan.md` with steps tagged `[me]` or `[agent]` |
 | `/check` | An independent check by a separate Opus agent (medium effort) that never saw the conversation and gets only the problem statement and file paths. Before any code (`plan.md` with no step done) it runs `plan-reviewer` on the plan: missed requirements, wrong complexity claims, unsafe parallel steps. After, it runs the tests, then `blind-checker` writes its own tests from the spec and reports the real output. Force either with `/check plan` or `/check code` |
 | `/implement` | Implements the next step of `plan.md`. A `[me]` step: one small diff, tests run, then it stops for my review. `[agent]` steps: parallel subagents, each owning its own files (refuses if two share one), then the full test suite |
 | `/explain` | Plain explanation of the code: what, how, complexity, the line to know. Give it my explanation instead and it checks mine |
@@ -52,7 +52,7 @@ avoid Claude Code's built-in `/plan`, `/review` and `/verify`.
 
 ## Two modes
 
-- **Together (default):** I reason, Claude challenges. One function, bug or test per turn, run
+- **Together (default):** I reason, Claude challenges (`/spec` proposes an approach only when I don't give one). One function, bug or test per turn, run
   after every change, and I write at least one edge-case test myself. Keep Manual permission mode (the kit sets it)
   so every edit shows up for review.
 - **Delegated:** when I hand Claude a whole task, or it runs as a subagent, it finishes the task,
@@ -63,7 +63,7 @@ avoid Claude Code's built-in `/plan`, `/review` and `/verify`.
 A typical loop:
 
 1. Write the requirements into `problem.md` and ask the person who owns them your questions.
-2. `/spec` with your approach; answer its numbered items; it writes `plan.md`.
+2. `/spec`, with your approach if you have one; answer its numbered items ("go" takes its recommendations); it writes `plan.md`.
 3. `/check`: a fresh agent attacks the plan before any code exists. Read the plan yourself after.
 4. `/implement`, one step per call (no loop), reading each result: `[me]` steps as small diffs I read, `[agent]` steps as parallel subagents.
 5. `/check` again once the core works: now a fresh agent tests the code from the spec alone.

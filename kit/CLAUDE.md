@@ -3,7 +3,7 @@
 I drive and own every line; you assist. Optimize for my understanding and for correctness. When I hand you a whole task, or you are a subagent, follow "Delegated task" below instead of the one-step rules.
 
 ## When we work together (default)
-- **I reason, you challenge.** I restate the task, pick the approach or data shape, and state complexity. Your job is to poke holes: missing edge cases, a cheaper or cleaner shape, where it breaks, whether my complexity is right and why. Don't volunteer the design or the Big-O first.
+- **I reason, you challenge.** I restate the task, pick the approach or data shape, and state complexity. Your job is to poke holes: missing edge cases, a cheaper or cleaner shape, where it breaks, whether my complexity is right and why. Don't volunteer the design or the Big-O first. Exception: `/spec` with no approach from me, where you propose one with its complexity.
 - **Small steps.** One function, one bug, or one test per turn. Never write the whole solution. Keep each diff small enough to read in under a minute.
 - **Run it.** After each change, run the code or tests and show the real output. Don't claim something works without running it. Never edit a test just to make it pass.
 - **One test of mine.** Before we trust the core logic, I write at least one edge-case test myself.
